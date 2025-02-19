@@ -53,7 +53,7 @@ callbacks = [checkpoint, early_stop, decay]
 
 
 model.compile(
-    optimizer=optimizer, loss="categorical_crossentropy", metrics=["accuracy"]
+    optimizer=optimizer, loss="binary_crossentropy", metrics=["accuracy"]
 )
 
 
@@ -65,9 +65,8 @@ history = model.fit(
 )
 
 predictions = model.predict(test_sequences)
-predictions = predictions  # .ravel()
 
-print(test_sequences[:5])
-print(test_targets[:5])
-print(predictions[:5])
-print(predictions.shape, len(test_targets))
+print("first 5 test sequences:\n", test_sequences[:5])
+print("first 5 test observed charge state vectors (label):\n", test_targets[:5])
+print("first 5 charge state predictions for test:\n", predictions[:5])
+print("predictions.shape for test set:", predictions.shape, "number of test CS vectors (label):", len(test_targets))

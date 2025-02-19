@@ -6,12 +6,12 @@ from ..constants import ALPHABET_UNMOD
 from ..layers.attention import AttentionLayer
 
 """
-This module contains a model coming in three flavours of predicting precursor charge states for peptide sequences in mass spectrometry data.
-The three flavours are:
+This module contains a deep learning model for precursor charge state prediction, inspired by Prosit's architecture. 
+The model is provided in three flavours of predicting precursor charge states:
 
 1. Dominant Charge State Prediction:
    - Task: Predict the dominant charge state of a given peptide sequence.
-   - Model: Uses a deep learning model (RNN-based) inspired by Prosit's architecture to predict the most likely charge state.
+   - Model: Uses a multi-class classification approach to predict the most likely charge state.
 
 2. Observed Charge State Prediction:
    - Task: Predict the observed charge states for a given peptide sequence.
