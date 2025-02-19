@@ -209,7 +209,7 @@ metrics_log.append(
 # print(f"Metrics logged to CSV file: {args.metrics_csv}")
 
 
-print(test_seq[:5])
-print(test_label[:5])
-print(test_pred_cs[:5])
-print(test_pred_cs.shape, len(test_label))
+print("first 5 test sequences:\n", test_seq[:5])
+print("first 5 test relative charge state vectors (label):\n", test_label[:5])
+print("first 5 relative charge state predictions for test:\n", test_pred_cs[:5])
+print("predictions.shape for test set:", test_pred_cs.shape, "number of test CS vectors (label):", len(test_label))
