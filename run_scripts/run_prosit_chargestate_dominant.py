@@ -69,8 +69,8 @@ predictions = model.predict(test_sequences)
 # this returns the index (== the charge state -1) of the predicted most abundant charge state
 predicted_class = np.argmax(predictions, axis=1)  # .ravel()
 
-print(test_sequences[:5])
-print(test_targets[:5])
-print(predictions[:5])
-print(predicted_class[:5])
-print(predicted_class.shape, predictions.shape, len(test_targets))
+print("first 5 test sequences:\n", test_sequences[:5])
+print("first 5 test dominant charge state vectors (label):\n", test_targets[:5])
+print("first 5 charge state predictions for test:\n", predictions[:5])
+print("first 5 most abundant CSs:\n", predicted_class[:5])
+print("predictions.shape for test set:", predicted_class.shape, predictions.shape, "number of test CS vectors (label):", len(test_targets))
