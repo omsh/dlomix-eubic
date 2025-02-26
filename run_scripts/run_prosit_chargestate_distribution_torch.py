@@ -122,8 +122,6 @@ for epoch in range(1, 2):
         f"Epoch {epoch} Summary: Train Loss: {avg_train_loss:.4f}, Validation Loss: {avg_val_loss:.4f}"
     )
 
-    # TODO continue adjustment here
-
     # Learning rate scheduler using the validation loss.
     scheduler.step(avg_val_loss)
     current_lr = scheduler.optimizer.param_groups[0]["lr"]

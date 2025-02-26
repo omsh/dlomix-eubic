@@ -45,8 +45,7 @@ class ChargeStatePredictorTorch(nn.Module):
         regressor_layer_size (int): The size of the regressor layer. Defaults to 512.
         num_classes (int): The number of classes for the output corresponding to charge states available in the data. Defaults to 6.
         model_flavour (str): The type of precursor charge state prediction to be done.
-            Can be either "dominant" (using softmax activation), "observed" (using sigmoid activation) or "relative" (using linear activation).
-            Defaults to "relative".
+            Can be either "dominant", "observed" or "relative". Defaults to "relative".
     """
 
     def __init__(
@@ -76,13 +75,14 @@ class ChargeStatePredictorTorch(nn.Module):
             # regression problem
             self.final_activation = (
                 nn.Identity()
-            )  # this is how a "linear activation" is done in torch
+            )  # == "linear activation" in torch
         elif model_flavour == "observed":
             # multi-label multi-class classification problem
             self.final_activation = nn.Sigmoid()
         elif model_flavour == "dominant":
             # multi-class classification problem
-            self.final_activation = nn.Softmax()
+            self.final_activation = nn.Identity()  
+            # in contrast to tf, don't use Softmax here, cause already included in CrossEntropyLoss, which is to be used for dominant case
         else:
             warnings.warn(f"{model_flavour} not available")
             exit
@@ -90,7 +90,7 @@ class ChargeStatePredictorTorch(nn.Module):
         self.embedding = nn.Embedding(
             num_embeddings=self.embeddings_count,
             embedding_dim=embedding_output_dim,
-            padding_idx=0,  # TODO check this
+            padding_idx=0,
         )
 
         self.encoder = BiGRUSequentialEncoder(
