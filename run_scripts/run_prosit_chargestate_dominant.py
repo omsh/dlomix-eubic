@@ -6,7 +6,7 @@ from dlomix.data import ChargeStateDataset
 from dlomix.models import ChargeStatePredictor
 
 model = ChargeStatePredictor(
-    num_classes=6, seq_length=32, alphabet=PTMS_ALPHABET, model_flavour="dominant"
+    num_classes=6, seq_length=30, alphabet=PTMS_ALPHABET, model_flavour="dominant"
 )
 print(model)
 
@@ -42,7 +42,7 @@ test_sequences = test_d["test"]["modified_sequence"]
 
 
 # callbacks
-weights_file = "./output/prosit_charge_major_test"
+weights_file = "./run_scripts/output/prosit_charge_major_test"
 checkpoint = tf.keras.callbacks.ModelCheckpoint(
     weights_file, save_best_only=True, save_weights_only=True
 )
@@ -73,4 +73,10 @@ print("first 5 test sequences:\n", test_sequences[:5])
 print("first 5 test dominant charge state vectors (label):\n", test_targets[:5])
 print("first 5 charge state predictions for test:\n", predictions[:5])
 print("first 5 most abundant CSs:\n", predicted_class[:5])
-print("predictions.shape for test set:", predicted_class.shape, predictions.shape, "number of test CS vectors (label):", len(test_targets))
+print(
+    "predictions.shape for test set:",
+    predicted_class.shape,
+    predictions.shape,
+    "number of test CS vectors (label):",
+    len(test_targets),
+)
