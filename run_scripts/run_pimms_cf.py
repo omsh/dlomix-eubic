@@ -3,6 +3,16 @@
 with Ligthening: `pip install lightning`
 """
 
+"""Pending:
+ensure data is available, at least for examples -> URL is available
+https://raw.githubusercontent.com/RasmussenLab/pimms/refs/heads/main/project/data/dev_datasets/HeLa_6070/protein_groups_wide_N50_M454.csv
+
+- Data is loaded via native Hugging Face datasets OR extend the datasets class to handle tabular data:
+    - adapt Datasets base class (if needed) -> to handle task formulation that does not strictly have the sequence as an input to the model.
+- data prep script to be done outside, then the exported CSV is to be used for the dataset class
+- Replace the load_datasets call with a class in DLOmix
+"""
+
 # %%
 import pathlib
 
