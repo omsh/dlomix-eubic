@@ -3,9 +3,13 @@ import tensorflow as tf
 
 from dlomix.constants import PTMS_ALPHABET
 from dlomix.data import ChargeStateDataset
-from dlomix.models import DominantChargeStatePredictor
+from dlomix.models import ChargeStatePredictor
 
-model = DominantChargeStatePredictor(seq_length=30)
+model = ChargeStatePredictor(
+    num_classes=6, seq_length=30, alphabet=PTMS_ALPHABET, model_flavour="dominant"
+)
+print(model)
+
 
 optimizer = tf.keras.optimizers.Adam(lr=0.0001)
 
